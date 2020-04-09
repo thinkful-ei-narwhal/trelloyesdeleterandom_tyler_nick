@@ -49,6 +49,22 @@ export default class App extends React.Component {
     this.setState({ newStateObj });
   };
 
+
+
+  addRandomCardEvent = (listId) => {
+    const newCard = newRandomCard()
+    const newList = this.state
+    newList.lists.forEach((x,index) => { 
+      console.log(index)
+      if (listId === index) {
+        newList.allCards[newCard.id] = newCard
+        x.cardIds.push(newCard.id)
+    }
+  })
+    this.setState(newList)
+
+  }
+
   render() {
     const listComponents = this.state.lists.map((list, index) => {
       return <List
@@ -58,6 +74,7 @@ export default class App extends React.Component {
         cardIds={list.cardIds}
         allCards={this.state.allCards}
         deleteCardEvent={this.deleteCardEvent}
+        addRandomCardEvent={this.addRandomCardEvent}
       />
     });
 
@@ -73,5 +90,15 @@ export default class App extends React.Component {
         </div>
       </main>
     );
+  }
+}
+
+function newRandomCard() {
+  const id = Math.random().toString(36).substring(2, 4)
+    + Math.random().toString(36).substring(2, 4);
+  return {
+    id,
+    title: `Random Card ${id}`,
+    content: 'lorem ipsum',
   }
 }

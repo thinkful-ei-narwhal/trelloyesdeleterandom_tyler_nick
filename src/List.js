@@ -35,19 +35,16 @@ export default class List extends React.Component {
         </header>
         <div className='List-cards'>
           {cardComponents}
+          <button type="button" onClick={() => {this.props.addRandomCardEvent(this.props.listId)}} id="random">Add Random Card</button>
         </div>
       </div>
     );
   }
 }
 
+//When creating a random card you'll need to both add 
+//the card to the allCards object as well as 
+//insert the card's id into the appropriate 
+//list's cardIds.
+
 //create an add random card
-// const newRandomCard = () => {
-//   const id = Math.random().toString(36).substring(2, 4)
-//     + Math.random().toString(36).substring(2, 4);
-//   return {
-//     id,
-//     title: `Random Card ${id}`,
-//     content: 'lorem ipsum',
-//   }
-// }
